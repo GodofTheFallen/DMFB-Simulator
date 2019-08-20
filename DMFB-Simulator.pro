@@ -25,11 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        command.cpp \
+        commandqueue.cpp \
+        errorhandler.cpp \
+        formsize.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        syscore.cpp
 
 HEADERS += \
-        mainwindow.h
+        command.h \
+        commandqueue.h \
+        errorhandler.h \
+        formsize.h \
+        mainwindow.h \
+        syscore.h
 
 FORMS += \
         mainwindow.ui
