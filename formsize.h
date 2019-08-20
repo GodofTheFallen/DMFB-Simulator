@@ -15,10 +15,14 @@ private:
     POS Wash,Waste;
     bool SafetyCheck();
 public:
-    FormSize(int _r, int _c, POS _I, POS _O, bool NeedWash);
+    static const int MAX_SIZE = 50;
+    FormSize();
     bool isValid() const;
 signals:
     void SendErrMsg(std::string);
+public slots:
+    void ChangeFormSize(int _r, int _c, POS _I, POS _O, bool NeedWash);
+    void SetWashStatus(int);
 };
 
 #endif // FORMSIZE_H

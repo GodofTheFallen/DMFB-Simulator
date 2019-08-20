@@ -31,6 +31,7 @@ SOURCES += \
         formsize.cpp \
         main.cpp \
         mainwindow.cpp \
+        sizesetting.cpp \
         syscore.cpp
 
 HEADERS += \
@@ -39,10 +40,12 @@ HEADERS += \
         errorhandler.h \
         formsize.h \
         mainwindow.h \
+        sizesetting.h \
         syscore.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        sizesetting.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

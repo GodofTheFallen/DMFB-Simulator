@@ -2,9 +2,10 @@
 #define SYSCORE_H
 
 #include <QObject>
+#include "formsize.h"
 #include "commandqueue.h"
 
-class SysCore:QObject
+class SysCore:public QObject
 {
     Q_OBJECT
 private:
@@ -15,7 +16,8 @@ public:
 signals:
     void DisplayTable();
 public slots:
-    void SetFormSize(int,int,int,int);
+    void ResetWash(int);
+    void SetFormSize(int , int , int, int, int, int, int);
 };
 
 #endif // SYSCORE_H
