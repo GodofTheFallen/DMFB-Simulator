@@ -23,11 +23,14 @@ signals:
 
 private slots:
     void on_checkBox_Wash_stateChanged(int);
-
     void on_pushButton_SetSize_clicked();
+    void SetBasicFormSize(int,int,int,int,int,int);
+    void ResetControlEnable();
+    void on_pushButton_Load_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QErrorMessage *ErrDisplay;
     SysCore* SysC;
 };
 

@@ -14,6 +14,10 @@ private:
     CMDType type;
     int tick;
     POS P0,P1;
+    /*
+     * For MOVE, P0 = before, P1 = after
+     * For SPLICT & MERGE, P0, P1 = 2 side POS, check validity in commandqueue
+    */
 public:
     Command(CMDType,POS,POS);
     bool operator < (const Command& another) const{return this->tick<another.tick;}

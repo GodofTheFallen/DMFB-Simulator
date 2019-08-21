@@ -27,7 +27,6 @@ CONFIG += c++11
 SOURCES += \
         command.cpp \
         commandqueue.cpp \
-        errorhandler.cpp \
         formsize.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -37,7 +36,6 @@ SOURCES += \
 HEADERS += \
         command.h \
         commandqueue.h \
-        errorhandler.h \
         formsize.h \
         mainwindow.h \
         sizesetting.h \

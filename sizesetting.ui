@@ -53,7 +53,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="groupBox_I">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -86,10 +86,10 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
+     <widget class="QPlainTextEdit" name="plainTextEdit_IC"/>
     </item>
     <item row="1" column="0">
-     <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+     <widget class="QPlainTextEdit" name="plainTextEdit_IR"/>
     </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_4">
@@ -100,7 +100,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="groupBox_O">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -133,10 +133,14 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPlainTextEdit" name="plainTextEdit_5"/>
+     <widget class="QPlainTextEdit" name="plainTextEdit_OC">
+      <property name="plainText">
+       <string/>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPlainTextEdit" name="plainTextEdit_6"/>
+     <widget class="QPlainTextEdit" name="plainTextEdit_OR"/>
     </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_6">
@@ -147,7 +151,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label_TC">
    <property name="geometry">
     <rect>
      <x>208</x>
@@ -157,10 +161,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Total Columns (1-50)</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit_2">
+  <widget class="QPlainTextEdit" name="plainTextEdit_TC">
    <property name="geometry">
     <rect>
      <x>208</x>
@@ -176,7 +180,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
+  <widget class="QPlainTextEdit" name="plainTextEdit_TR">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -192,7 +196,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_TR">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -202,7 +206,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Total Rows (1-50)</string>
+    <string/>
    </property>
   </widget>
  </widget>

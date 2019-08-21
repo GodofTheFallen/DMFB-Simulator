@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <algorithm>
+
 typedef std::pair<int,int> POS;
 
 class FormSize:public QObject
@@ -13,16 +14,21 @@ private:
     int Row,Col;
     POS Input,Output;
     POS Wash,Waste;
-    bool SafetyCheck();
-public:
-    static const int MAX_SIZE = 50;
-    FormSize();
-    bool isValid() const;
+    void SafetyCheck(); //Will emit signal ValidityChanged
+    bool _SafetyCheck();
+
 signals:
-    void SendErrMsg(std::string);
+    void SendErrMsg(const QString &); //If setting is invalid, emit error signal
+    void ValidityChanged(bool);
+
+public:
+    static const int MAX_SIZE = 12; //Max Size
+    FormSize(QObject *parent = nullptr):QObject (parent),Row(0),Col(0) {Validity = false;}
+    bool isValid() const; //if not valid, refuse to paint
+
 public slots:
     void ChangeFormSize(int _r, int _c, POS _I, POS _O, bool NeedWash);
-    void SetWashStatus(int);
+    bool SetWashStatus(int);
 };
 
 #endif // FORMSIZE_H
