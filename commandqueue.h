@@ -3,6 +3,7 @@
 
 #include "command.h"
 #include <QFileDialog>
+#include <QErrorMessage>
 #include <queue>
 #include <QFile>
 #include <QObject>
@@ -12,23 +13,23 @@ class CommandQueue:public QObject
     Q_OBJECT
 
 private:
-    std::priority_queue <Command,std::vector<Command>,std::greater<Command>> Q;
-    QFile *CMDDir;
+    std::priority_queue <Command,std::vector<Command>,std::greater<Command>> *Q;
+
     bool Validity;
-    bool _SafetyCheck();
     void Add_Command(const Command&);
-    void LoadFromFile();
+    void LoadFromFile(QFile *CMDDir);
+    QErrorMessage *QEM;
 
 public:
     CommandQueue(QObject* parent = nullptr);
-    void CheckValidity();
+    ~CommandQueue();
     bool isValid();
 
 signals:
     void ValidityChanged(bool);
 
 public slots:
-    void SetCMDDir();
+    void LoadCMDDir(QFile *CMDDir);
 };
 
 #endif // COMMANDQUEUE_H

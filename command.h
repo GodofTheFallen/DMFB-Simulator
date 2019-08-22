@@ -4,7 +4,7 @@
 #include <algorithm>
 
 //Simply record commands (by steps)
-typedef enum{MOVE,SPLIT0,SPLIT1,MERGE0,MERGE1} CMDType;
+typedef enum{MOVE,SPLIT0,SPLIT1,MERGE0,MERGE1,INPUT,OUTPUT} CMDType;
 //The 'MIX' command will be splited up into 'MOVE's
 typedef std::pair<int,int> POS;
 
@@ -19,8 +19,9 @@ private:
      * For SPLICT & MERGE, P0, P1 = 2 side POS, check validity in commandqueue
     */
 public:
-    Command(CMDType,POS,POS);
+    Command(CMDType, int, POS, POS);
     bool operator < (const Command& another) const{return this->tick<another.tick;}
+    bool operator > (const Command& another) const{return this->tick>another.tick;}
     int GetTick() const;
     POS GetP1() const;
     POS GetP2() const;

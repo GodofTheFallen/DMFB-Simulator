@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Sounds">
+        <file>assert/LAST.mp3</file>
+        <file>assert/MOVE.mp3</file>
+        <file>assert/SPLIT.mp3</file>
+    </qresource>
+</RCC>

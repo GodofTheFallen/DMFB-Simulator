@@ -1,6 +1,6 @@
 #include "command.h"
 
-Command::Command(CMDType _t,POS _p0,POS _p1):type(_t),P0(_p0),P1(_p1)
+Command::Command(CMDType _t,int _ti, POS _p0,POS _p1):type(_t),tick(_ti),P0(_p0),P1(_p1)
 {
 
 }

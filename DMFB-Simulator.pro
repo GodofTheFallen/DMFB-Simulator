@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,23 +26,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        chippaintbox.cpp \
         command.cpp \
         commandqueue.cpp \
         formsize.cpp \
+        inputsetting.cpp \
         main.cpp \
         mainwindow.cpp \
         sizesetting.cpp \
         syscore.cpp
 
 HEADERS += \
+        chippaintbox.h \
         command.h \
         commandqueue.h \
         formsize.h \
+        inputsetting.h \
         mainwindow.h \
         sizesetting.h \
         syscore.h
 
 FORMS += \
+        inputsetting.ui \
         mainwindow.ui \
         sizesetting.ui
 
@@ -49,3 +55,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

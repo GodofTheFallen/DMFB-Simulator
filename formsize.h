@@ -12,7 +12,8 @@ class FormSize:public QObject
 private:
     bool Validity;
     int Row,Col;
-    POS Input,Output;
+    QList<POS> Input;
+    POS Output;
     POS Wash,Waste;
     void SafetyCheck(); //Will emit signal ValidityChanged
     bool _SafetyCheck();
@@ -27,8 +28,8 @@ public:
     bool isValid() const; //if not valid, refuse to paint
 
 public slots:
-    void ChangeFormSize(int _r, int _c, POS _I, POS _O, bool NeedWash);
-    bool SetWashStatus(int);
+    void ChangeFormSize(int _r, int _c, QList<POS> _I, POS _O, bool NeedWash);
+    bool SetWashStatus(Qt::CheckState);
 };
 
 #endif // FORMSIZE_H
