@@ -39,7 +39,7 @@ ChipCell* ChipInfo::getCell(const POS & _P)
 
 void ChipInfo::cleanAfterCopy()
 {
-    soundMv = soundS0 = soundS1 = soundM0 = soundM1 = false;
+    soundI = soundO = soundMv = soundS0 = soundS1 = soundM0 = soundM1 = false;
 
     for (auto &i : CT) i.cantWash = i.shouldWash = false;
 

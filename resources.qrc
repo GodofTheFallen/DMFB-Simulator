@@ -1,3 +1,12 @@
 <RCC>
     <qresource prefix="/Sounds"/>
+    <qresource prefix="/">
+        <file>assert/INPUT.wav</file>
+        <file>assert/MERGE0.wav</file>
+        <file>assert/MERGE1.wav</file>
+        <file>assert/MOVE.wav</file>
+        <file>assert/OUTPUT.wav</file>
+        <file>assert/SPLIT0.wav</file>
+        <file>assert/SPLIT1.wav</file>
+    </qresource>
 </RCC>

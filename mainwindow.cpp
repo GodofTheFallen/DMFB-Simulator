@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QSound>
 #include <QTimer>
 #include <QtDebug>
 
@@ -142,6 +143,15 @@ void MainWindow::PaintNext()
     try {
         SysC->PlayNext();
         PaintNow(SysC->DisplayCurrent(),false);
+
+        if (SysC->DisplayCurrent().soundI) QSound::play(":/assert/INPUT.wav");
+        if (SysC->DisplayCurrent().soundO) QSound::play(":/assert/OUTPUT.wav");
+        if (SysC->DisplayCurrent().soundMv) QSound::play(":/assert/MOVE.wav");
+        if (SysC->DisplayCurrent().soundS0) QSound::play(":/assert/SPLIT0.wav");
+        if (SysC->DisplayCurrent().soundS1) QSound::play(":/assert/SPLIT1.wav");
+        if (SysC->DisplayCurrent().soundM0) QSound::play(":/assert/MERGE0.wav");
+        if (SysC->DisplayCurrent().soundM1) QSound::play(":/assert/MERGE1.wav");
+
         if (needWash()) ui->label_Pol->setVisible(SysC->DisplayCurrent().CheckPollution());
         if (needWash()) WTimer1->singleShot(WashT1,this,&MainWindow::ShowCurWash);
         else if (!Playing) ResetUndoNext();
