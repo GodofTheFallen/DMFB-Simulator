@@ -1,5 +1,8 @@
 #include "chippaintbox.h"
 
+#include <QMouseEvent>
+#include <QtDebug>
+
 const QPointF ChipPaintBox::O_POS(25,625);
 QColor ChipPaintBox::InputColor(250,187,50);
 QColor ChipPaintBox::OutputColor(125,44,201);
@@ -122,4 +125,16 @@ void ChipPaintBox::paintEvent(QPaintEvent *)
             break;
         }
     }
+}
+
+void ChipPaintBox::mousePressEvent(QMouseEvent *event)
+{
+    if (!CI) return;
+    if (!CI->needWash) return;
+    if (event->button() != Qt::RightButton) return;
+    int mx = event->x(), my = event->y();
+    int x = (mx-O_POS.toPoint().x())/GridWidth + 1;
+    int y = (O_POS.toPoint().y()-my)/GridWidth + 1;
+    qDebug() << x << ' ' << y;
+    if (1 <= x && x <= CI->Row && 1 <= y && y <= CI->Col) emit MouseClick(std::make_pair(x,y));
 }

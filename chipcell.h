@@ -12,7 +12,7 @@ public:
     bool cantWash;
     bool shouldWash;
 
-    void setBan(bool _b) {ban = _b;}
+    void setBan() {ban = !ban;}
     void setInput() {I = true;}
     void setOutput() {O = true;}
 

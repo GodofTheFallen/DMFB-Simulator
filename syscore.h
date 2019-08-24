@@ -25,6 +25,7 @@ public:
 signals:
     void PlayFinish();
     void ErrorOccur(QString);
+    void BanSet();
 
 public slots:
     void SysCoreStart(FormSize *SZ, CommandQueue *CMDQ, bool _nW);
@@ -32,6 +33,7 @@ public slots:
     void Finish();
     void Undo();
     void PlayNext();
+    void SetBan(POS);
 
 private:
     QList<ChipInfo> *CQ;

@@ -2,6 +2,11 @@
 
 
 SysCore::SysCore(QObject *parent):QObject(parent){
+    CQ = nullptr;
+    CMDQ = nullptr;
+    needWash = false;
+    TotalStep = CurrentStep =0;
+    Fin = false;
 }
 
 SysCore::~SysCore()
@@ -85,6 +90,14 @@ void SysCore::PlayNext()
     }
     bool Sta = CQ->operator[](CurrentStep).CheckStatic();
     if (!Sta) throw QString("Static check failed!");
+}
+
+void SysCore::SetBan(POS P)
+{
+    if (!needWash) return;
+    if (!CQ) return;
+    CQ->operator[](CurrentStep).getCell(P)->setBan();
+    emit BanSet();
 }
 
 void SysCore::CMDInput(Command curCMD)

@@ -61,6 +61,8 @@ public slots:
     void StopPlay();
     void ShowCurWash();
     void ShowCurOri();
+    void SetBan(POS);
+    void RepaintBan();
 
 signals:
     void WashStatusChanged(Qt::CheckState);

@@ -19,6 +19,7 @@ public:
     static QColor InputColor,OutputColor,WaterColor,WasteColor;
 
 signals:
+    void MouseClick(POS);
 
 public slots:
     void PaintNow(const ChipInfo&, bool);
@@ -30,6 +31,7 @@ private:
 
 protected:
     void paintEvent(QPaintEvent *ev);
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // CHIPPAINTBOX_H

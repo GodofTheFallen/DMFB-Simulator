@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     PaintBox->layout();
     connect(this, &MainWindow::PaintNow, PaintBox, &ChipPaintBox::PaintNow);
 
+    connect(PaintBox,&ChipPaintBox::MouseClick,this,&MainWindow::SetBan);
+    connect(SysC,&SysCore::BanSet,this,&MainWindow::RepaintBan);
 
     ErrDisplay = new QErrorMessage(this);
     ErrDisplay->setWindowTitle("Error!");
@@ -183,6 +185,19 @@ void MainWindow::ShowCurOri()
 {
     PaintNow(SysC->DisplayCurrent(),false);
     if (!Playing) ResetUndoNext();
+}
+
+void MainWindow::SetBan(POS P)
+{
+    if (Timer->isActive()) return;
+    if (WTimer1->isActive()) return;
+    if (WTimer2->isActive()) return;
+    SysC->SetBan(P);
+}
+
+void MainWindow::RepaintBan()
+{
+    PaintNow(SysC->DisplayCurrent(),false);
 }
 
 void MainWindow::on_pushButton_Undo_clicked()
