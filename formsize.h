@@ -2,9 +2,7 @@
 #define FORMSIZE_H
 
 #include <QObject>
-#include <algorithm>
-
-typedef std::pair<int,int> POS;
+#include "basetypedef.h"
 
 class FormSize:public QObject
 {
@@ -12,8 +10,6 @@ class FormSize:public QObject
 private:
     bool Validity;
     int Row,Col;
-    QList<POS> Input;
-    POS Output;
     POS Wash,Waste;
     void SafetyCheck(); //Will emit signal ValidityChanged
     bool _SafetyCheck();
@@ -26,6 +22,15 @@ public:
     static const int MAX_SIZE = 12; //Max Size
     FormSize(QObject *parent = nullptr):QObject (parent),Row(0),Col(0) {Validity = false;}
     bool isValid() const; //if not valid, refuse to paint
+
+    QList<POS> Input;
+    POS Output;
+
+    int getRow() const {return Row;}
+    int getCol() const {return Col;}
+
+    POS getWash() const {return Wash;}
+    POS getWaste() const {return Waste;}
 
 public slots:
     void ChangeFormSize(int _r, int _c, QList<POS> _I, POS _O, bool NeedWash);

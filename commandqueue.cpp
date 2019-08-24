@@ -35,7 +35,7 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
             int y1 = getint();
             int x2 = getint();
             int y2 = getint();
-            //if (abs(x1-x2)+abs(y1-y2)!=1) ERR;
+            if (abs(x1-x2)+abs(y1-y2)!=1) throw QString("Move Command at t=%1 has wrong argument.").arg(t);
             Add_Command(Command(CMDType::MOVE,t,std::make_pair(x1,y1),std::make_pair(x2,y2)));
         }
         else if (L[i] == "Mix") {
@@ -47,7 +47,7 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
                 bool ok; L[i+1].toInt(&ok); if (!ok) break;
                 int x2 = getint();
                 int y2 = getint();
-                //if (abs(x1-x2)+abs(y1-y2)!=1) ERR;
+                if (abs(x1-x2)+abs(y1-y2)!=1) throw QString("Mix Command at t=%1 has wrong argument.").arg(t);
                 Add_Command(Command(CMDType::MOVE,t,std::make_pair(x1,y1),std::make_pair(x2,y2)));
                 ++t;x1=x2;y1=y2;
             }
@@ -61,9 +61,9 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
             int x3 = getint();
             int y3 = getint();
             if (x1*2!=x2+x3 || y1*2!=y2+y3)
-                QEM->showMessage("There's a Split command with wrong (x1,y1), but may not cause fatal error.");
-            //if (!(abs(x2-x3)==2 && (x2+x3)/2==x1 && y1==y2 && y1==y3) &&
-            //        !(abs(y2-y3)==2 && (y2+y3)/2==y1 && x1==x2 && x1==x3)) ERR;
+                QEM->showMessage(QString("Split Command at t=%1 has wrong (x1,y1), but may not cause fatal error.").arg(t));
+            if (!(abs(x2-x3)==2 && (x2+x3)/2==x1 && y1==y2 && y1==y3) &&
+                    !(abs(y2-y3)==2 && (y2+y3)/2==y1 && x1==x2 && x1==x3)) throw QString("Split Command at t=%1 has wrong argument.").arg(t);
             Add_Command(Command(CMDType::SPLIT0,t,std::make_pair(x2,y2),std::make_pair(x3,y3)));
             Add_Command(Command(CMDType::SPLIT1,t+1,std::make_pair(x2,y2),std::make_pair(x3,y3)));
         }
@@ -73,7 +73,7 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
             int y1 = getint();
             int x2 = getint();
             int y2 = getint();
-            //if (!(abs(x1-x2)==2 && y1==y2) && !(abs(y1-y2)==2 && x1==x2)) ERR;
+            if (!(abs(x1-x2)==2 && y1==y2) && !(abs(y1-y2)==2 && x1==x2)) throw QString("Merge Command at t=%1 has wrong argument.").arg(t);
             Add_Command(Command(CMDType::MERGE0,t,std::make_pair(x1,y1),std::make_pair(x2,y2)));
             Add_Command(Command(CMDType::MERGE1,t+1,std::make_pair(x1,y1),std::make_pair(x2,y2)));
         }
@@ -86,6 +86,7 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
         else ERR;
         ++i;
     }
+    CMDDir->close();
 #undef NX
 #undef ERR
 }
@@ -111,7 +112,10 @@ bool CommandQueue::isValid()
 void CommandQueue::LoadCMDDir(QFile *CMDDir)
 {
     bool _Val = true;
-    if (!CMDDir)
+    if (!CMDDir) {
+        QEM->showMessage("Failed to open file.");
+        _Val = false;
+    }
     try {
         LoadFromFile(CMDDir);
     }
@@ -120,4 +124,10 @@ void CommandQueue::LoadCMDDir(QFile *CMDDir)
         _Val = false;
     }
     if (_Val != Validity) emit ValidityChanged(Validity=_Val);
+}
+
+void CommandQueue::pop()
+{
+    if (!empty()) Q->pop();
+    if (empty()) emit CommandFinish();
 }

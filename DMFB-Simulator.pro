@@ -26,9 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        chipcell.cpp \
+        chipinfo.cpp \
         chippaintbox.cpp \
         command.cpp \
         commandqueue.cpp \
+        element.cpp \
         formsize.cpp \
         inputsetting.cpp \
         main.cpp \
@@ -37,9 +40,13 @@ SOURCES += \
         syscore.cpp
 
 HEADERS += \
+        basetypedef.h \
+        chipcell.h \
+        chipinfo.h \
         chippaintbox.h \
         command.h \
         commandqueue.h \
+        element.h \
         formsize.h \
         inputsetting.h \
         mainwindow.h \

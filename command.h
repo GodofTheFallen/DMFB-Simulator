@@ -23,8 +23,9 @@ public:
     bool operator < (const Command& another) const{return this->tick<another.tick;}
     bool operator > (const Command& another) const{return this->tick>another.tick;}
     int GetTick() const;
+    CMDType getType() const;
+    POS GetP0() const;
     POS GetP1() const;
-    POS GetP2() const;
 };
 
 #endif // COMMAND_H

@@ -24,12 +24,16 @@ public:
     CommandQueue(QObject* parent = nullptr);
     ~CommandQueue();
     bool isValid();
+    bool empty() const{return Q->empty();}
 
 signals:
     void ValidityChanged(bool);
+    void CommandFinish();
 
 public slots:
     void LoadCMDDir(QFile *CMDDir);
+    const Command& top() {return Q->top();}
+    void pop();
 };
 
 #endif // COMMANDQUEUE_H
