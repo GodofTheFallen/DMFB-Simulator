@@ -8,5 +8,7 @@
         <file>assert/OUTPUT.wav</file>
         <file>assert/SPLIT0.wav</file>
         <file>assert/SPLIT1.wav</file>
+        <file>assert/error.ico</file>
+        <file>assert/main.ico</file>
     </qresource>
 </RCC>

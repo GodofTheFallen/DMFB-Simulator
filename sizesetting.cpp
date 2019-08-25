@@ -5,8 +5,8 @@
 SizeSetting::SizeSetting(QWidget *parent) : QDialog(parent),ui(new Ui::SizeSetting)
 {
     ui->setupUi(this);
-    ui->label_TR->setText("Total Rows (1-"+QString::number(FormSize::MAX_SIZE)+")");
-    ui->label_TC->setText("Total Columns (1-"+QString::number(FormSize::MAX_SIZE)+")");
+    ui->label_TR->setText("Total Columns (1-"+QString::number(FormSize::MAX_SIZE)+")");
+    ui->label_TC->setText("Total Rows (1-"+QString::number(FormSize::MAX_SIZE)+")");
     ui->label_ICount->setText(QString("Input Added: %1").arg(I.size()));
 }
 

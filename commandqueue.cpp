@@ -1,5 +1,7 @@
 #include "commandqueue.h"
 
+#include <QIcon>
+
 
 void CommandQueue::Add_Command(const Command &CMD)
 {
@@ -18,7 +20,7 @@ void CommandQueue::LoadFromFile(QFile *CMDDir)
     AllIn.replace(','," ");
     QStringList L = AllIn.split(' ');
     int i=0;
-#define ERR throw(QString("Command format error"))
+#define ERR throw(QString("Command format error."))
     auto NX=[=](int& i){if (i+1>=L.size()) ERR; return ++i;};
     auto getint=[&](){bool ok;int tmp = L[NX(i)].toInt(&ok);if (!ok) ERR;return tmp;};
     while (i<L.size()) {
@@ -97,6 +99,7 @@ CommandQueue::CommandQueue(QObject *parent) : QObject (parent)
     Q = nullptr;
     QEM =new QErrorMessage;
     QEM->setWindowTitle("Error!");
+    QEM->setWindowIcon(QIcon(":/assert/error.ico"));
 }
 
 CommandQueue::~CommandQueue()

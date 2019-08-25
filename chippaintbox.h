@@ -23,6 +23,7 @@ signals:
 
 public slots:
     void PaintNow(const ChipInfo&, bool);
+    void ClearPainting();
 
 private:
     bool Washing;

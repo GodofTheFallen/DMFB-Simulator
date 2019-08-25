@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ErrDisplay = new QErrorMessage(this);
     ErrDisplay->setWindowTitle("Error!");
+    ErrDisplay->setWindowIcon(QIcon(":/assert/error.ico"));
     connect(SZ, SIGNAL(SendErrMsg(const QString&)) ,ErrDisplay, SLOT(showMessage(const QString &)));
 
     connect(this,&MainWindow::WashStatusChanged,this,&MainWindow::ResetWash);
@@ -83,6 +84,7 @@ void MainWindow::SetBasicFormSize(int TR, int TC, QList<POS> I, POS O)
     ui->checkBox_Wash->setCheckState(Qt::Unchecked);
     SetFormSize(TR,TC,I,O,0);
     if (SZ->isValid()) emit PaintNow(ChipInfo(*SZ,needWash()),false);
+    else PaintBox->ClearPainting();
 }
 
 void MainWindow::ResetStartEnable()
@@ -138,6 +140,8 @@ void MainWindow::ResetUndoNext()
 {
     ui->pushButton_Undo->setEnabled(!SysC->DisUndo() && !needWash());
     ui->pushButton_Next->setEnabled(!SysC->DisNext());
+    ui->pushButton_Play->setEnabled(!SysC->DisNext());
+    ui->pushButton_Reload->setEnabled(true);
 }
 
 void MainWindow::PaintNext()
@@ -163,6 +167,7 @@ void MainWindow::PaintNext()
         ErrDisplay->showMessage(ErrMsg);
         ui->pushButton_Next->setEnabled(false);
         ui->pushButton_Undo->setEnabled(false);
+        ui->pushButton_Reload->setEnabled(true);
         return;
     }
 }
@@ -203,6 +208,9 @@ void MainWindow::RepaintBan()
 void MainWindow::on_pushButton_Undo_clicked()
 {
     ui->pushButton_Undo->setEnabled(false);
+    ui->pushButton_Next->setEnabled(false);
+    ui->pushButton_Play->setEnabled(false);
+    ui->pushButton_Reload->setEnabled(false);
     SysC->Undo();
     emit PaintNow(SysC->DisplayCurrent(),false);
     ResetUndoNext();
@@ -210,7 +218,10 @@ void MainWindow::on_pushButton_Undo_clicked()
 
 void MainWindow::on_pushButton_Next_clicked()
 {
+    ui->pushButton_Undo->setEnabled(false);
     ui->pushButton_Next->setEnabled(false);
+    ui->pushButton_Play->setEnabled(false);
+    ui->pushButton_Reload->setEnabled(false);
     PaintNext();
 }
 
@@ -218,6 +229,8 @@ void MainWindow::on_pushButton_Play_clicked()
 {
     ui->pushButton_Undo->setEnabled(false);
     ui->pushButton_Next->setEnabled(false);
+    ui->pushButton_Play->setEnabled(false);
+    ui->pushButton_Reload->setEnabled(false);
     Playing = true;
     Timer->start(IdleTime);
 }

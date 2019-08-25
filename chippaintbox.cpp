@@ -30,6 +30,14 @@ void ChipPaintBox::PaintNow(const ChipInfo &_CI, bool _nW)
     repaint();
 }
 
+void ChipPaintBox::ClearPainting()
+{
+    Washing = false;
+    if (CI) delete CI;
+    CI = nullptr;
+    repaint();
+}
+
 void ChipPaintBox::paintEvent(QPaintEvent *)
 {
     if (!CI) return;
@@ -96,7 +104,7 @@ void ChipPaintBox::paintEvent(QPaintEvent *)
         for (int j = 1; j <= CI->Col; ++j) {
             ChipCell *cur = CI->getCell(std::make_pair(i,j));
             Painter.setBrush(Qt::gray);
-            if (CI->needWash && cur->banWash()) Painter.drawRect(QRectF(ScaledPoint(i-1,j-1),ScaledPoint(i,j)));
+            if (CI->needWash && cur->banWash()) Painter.drawRect(QRectF(ScaledPoint(i-0.95,j-0.95),ScaledPoint(i-0.05,j-0.05)));
             for (auto wid : cur->Pollution) {
                 QColor WC = Element::ColorMap[wid];
                 WC.setAlpha(WasteAlpha);

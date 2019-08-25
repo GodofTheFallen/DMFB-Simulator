@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>DMFB-Simulator v1.0</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/assert/main.ico</normaloff>:/assert/main.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="groupBox_Setting">
     <property name="geometry">
@@ -146,6 +150,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
