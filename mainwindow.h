@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QGraphicsView>
 #include <QMediaPlayer>
+#include <QSound>
 #include "syscore.h"
 #include "sizesetting.h"
 #include "chippaintbox.h"
@@ -48,6 +49,8 @@ private:
     static const int WashT2 = 200;
 
     QTimer *Timer,*WTimer1,*WTimer2;
+
+    QSound *SI, *SO, *SMv, *SM0, *SM1, *SS0, *SS1;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

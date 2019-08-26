@@ -53,6 +53,14 @@ MainWindow::MainWindow(QWidget *parent) :
     pal.setColor(QPalette::Foreground, Qt::red);
     ui->label_Pol->setPalette(pal);
     ui->label_Pol->setVisible(false);
+
+    SI = new QSound(":/assert/INPUT.wav", this);
+    SO = new QSound(":/assert/OUTPUT.wav", this);
+    SMv = new QSound(":/assert/MOVE.wav", this);
+    SS0 = new QSound(":/assert/SPLIT0.wav", this);
+    SS1 = new QSound(":/assert/SPLIT1.wav", this);
+    SM0 = new QSound(":/assert/MERGE0.wav", this);
+    SM1 = new QSound(":/assert/MERGE1.wav", this);
 }
 
 MainWindow::~MainWindow()
@@ -150,13 +158,13 @@ void MainWindow::PaintNext()
         SysC->PlayNext();
         PaintNow(SysC->DisplayCurrent(),false);
 
-        if (SysC->DisplayCurrent().soundI) QSound::play(":/assert/INPUT.wav");
-        if (SysC->DisplayCurrent().soundO) QSound::play(":/assert/OUTPUT.wav");
-        if (SysC->DisplayCurrent().soundMv) QSound::play(":/assert/MOVE.wav");
-        if (SysC->DisplayCurrent().soundS0) QSound::play(":/assert/SPLIT0.wav");
-        if (SysC->DisplayCurrent().soundS1) QSound::play(":/assert/SPLIT1.wav");
-        if (SysC->DisplayCurrent().soundM0) QSound::play(":/assert/MERGE0.wav");
-        if (SysC->DisplayCurrent().soundM1) QSound::play(":/assert/MERGE1.wav");
+        if (SysC->DisplayCurrent().soundI) SI->play();
+        if (SysC->DisplayCurrent().soundO) SO->play();
+        if (SysC->DisplayCurrent().soundMv) SMv->play();
+        if (SysC->DisplayCurrent().soundS0) SS0->play();
+        if (SysC->DisplayCurrent().soundS1) SS1->play();
+        if (SysC->DisplayCurrent().soundM0) SM0->play();
+        if (SysC->DisplayCurrent().soundM1) SM1->play();
 
         if (needWash()) ui->label_Pol->setVisible(SysC->DisplayCurrent().CheckPollution());
         if (needWash()) WTimer1->singleShot(WashT1,this,&MainWindow::ShowCurWash);
